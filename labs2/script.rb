@@ -1,6 +1,8 @@
 def script
   puts 'Enter word: '
-  word = gets.to_s
+  word = gets.to_s.gsub("\n", "")
+
+  puts word
 
   if word.reverse[0, 2].reverse == "cs"
     puts (2 ** word.length)
@@ -16,12 +18,12 @@ def script2
   pokemons = []
   number.times do
     puts "Enter name: "
-    name = gets.to_s
+    name = gets.chomp
     puts "Enter color: "
-    color = gets.to_s
+    color = gets.chomp
     pokemons << { name => color }
   end
-
+  puts pokemons
 end
 script
 
