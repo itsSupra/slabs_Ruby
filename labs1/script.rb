@@ -1,11 +1,11 @@
 def greeting
   name = gets.to_s
-  lname = gets.to_s
+  last_name = gets.to_s
   age = gets.to_i
   if age < 18
-    puts "Привет, #{name},#{lname}. Тебе меньше 18 лет, но начать учиться программировать никогда не рано"
+    puts "Привет, #{name},#{last_name}. Тебе меньше 18 лет, но начать учиться программировать никогда не рано"
   else
-    puts "Привет, #{name},#{lname}. Самое время заняться делом!"
+    puts "Привет, #{name},#{last_name}. Самое время заняться делом!"
   end
 end
 
@@ -19,6 +19,3 @@ def foobar
   end
 
 end
-
-
-foobar
