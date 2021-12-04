@@ -1,6 +1,6 @@
 def greeting
-  name = gets.to_s
-  last_name = gets.to_s
+  name = gets.to_s.chomp
+  last_name = gets.to_s.chomp
   age = gets.to_i
   if age < 18
     puts "Привет, #{name} #{last_name}. Тебе меньше 18 лет, но начать учиться программировать никогда не рано"
@@ -22,4 +22,5 @@ def foobar
     second + first
   end
 end
+greeting
 

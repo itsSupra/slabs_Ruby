@@ -6,12 +6,11 @@ def index
 end
 
 def find(id)
-  file = File.open(STUDENTS)
-  file.readlines.each do |students|
-    number = students
-    id << [number[0]]
+  File.foreach(STUDENTS).with_index do |student, index|
+    if (id == index)
+      puts student
+    end
   end
-  id
 end
 
 def where(pattern)
@@ -33,9 +32,16 @@ def update(id, text)
 end
 
 def delete(id)
-  file = File.open(STUDENTS)
-  File.foreach(STUDENTS).with_index do ||
+  file = File.open(RESULT, 'w')
+  File.foreach(STUDENTS).with_index do |student, index|
+    if id == index
+    else
+      file.puts(student)
+    end
   end
+  file.close
+  File.write(STUDENTS, File.read(RESULT))
+  File.delete(RESULT) if File.exist?(RESULT)
 end
 
-find(1)
+delete(1)

@@ -21,6 +21,7 @@ end
 
 def balance(total)
   print "Balance: #{total}\n"
+  "Balance: #{total}\n"
 end
 
 def deposit (total)
