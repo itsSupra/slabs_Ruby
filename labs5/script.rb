@@ -1,5 +1,4 @@
 require "socket"
-require 'rack'
 require '../labs5/cash_machine'
 
 server = TCPServer.new('localhost', 3000)

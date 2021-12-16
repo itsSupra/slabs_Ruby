@@ -1,61 +1,5 @@
-module Resource
-  def connection(routes)
-    if routes.nil?
-      puts "No route matches for #{self}"
-      return
-    end
-
-    loop do
-      print 'Choose verb to interact with resources (GET/POST/PUT/DELETE) / q to exit: '
-      verb = gets.chomp
-      break if verb == 'q'
-
-      action = nil
-
-      if verb == 'GET'
-        print 'Choose action (index/show) / q to exit: '
-        action = gets.chomp
-        break if action == 'q'
-      end
-
-
-      action.nil? ? routes[verb].call : routes[verb][action].call
-    end
-  end
-end
-
-class PostsController
-  extend Resource
-
-  def initialize
-    @posts = []
-  end
-
-  def index
-    @posts = Posts.all
-    puts 'index'
-  end
-
-  def show
-    @posts = Posts.find(params[:id])
-    puts 'show'
-  end
-
-  def create
-    @posts = Posts.new
-    @posts.save
-    puts 'create'
-  end
-
-  def update
-    puts 'update'
-  end
-
-  def destroy
-    @posts = Posts.destroy(params[:id])
-    puts 'destroy'
-  end
-end
+require_relative 'posts_controller'
+require_relative 'comments_controller'
 
 class Router
   def initialize
@@ -64,13 +8,15 @@ class Router
 
   def init
     resources(PostsController, 'posts')
+    resources(CommentsController, 'comments')
 
     loop do
-      print 'Choose resource you want to interact (1 - Posts, 2 - Comments, q - Exit): '
-      choise = gets.chomp
+      print 'Print number you want to interact (1 - Posts, 2 - Comments, q - Exit): '
+      number = gets.chomp.upcase.strip
 
-      PostsController.connection(@routes['posts']) if choise == '1'
-      break if choise == 'q'
+      PostsController.connection(@routes['posts']) if number == '1'
+      CommentsController.connection(@routes['comments']) if number == '2'
+      break if number == 'Q'
     end
 
     puts 'Good bye!'
@@ -91,5 +37,4 @@ class Router
 end
 
 router = Router.new
-
 router.init
